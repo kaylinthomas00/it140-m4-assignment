@@ -10,12 +10,45 @@
 
 START hilow_game
 
-    # Establish a valid guessing range.
-    TODO: Obtain the lower and upper bounds.
-    TODO: Repeat as needed until the bounds satisfy the requirement.
+    # 1. Establish a valid guessing range
+    PRINT "Enter lower bound: "
+    INPUT lower_bound
+    PRINT "Enter upper bound: "
+    INPUT upper_bound
+    
+    WHILE lower_bound >= upper_bound
+        PRINT "Invalid bounds. Lower bound must be less than upper bound."
+        PRINT "Enter lower bound: "
+        INPUT lower_bound
+        PRINT "Enter upper bound: "
+        INPUT upper_bound
+    END WHILE
 
-    # Establish the number the player is trying to guess.
-    TODO: Generate the required random number from the valid range.
+    # 2. Establish the secret random number
+    secret_number = RANDOM_INT(lower_bound, upper_bound)
+
+    # 3. Play the game with a loop
+    guess = -1
+
+    WHILE guess != secret_number
+        PRINT "Enter your guess: "
+        INPUT guess
+
+        # Input validation for the guess
+        WHILE guess < lower_bound OR guess > upper_bound
+            PRINT "Guess out of range. Try again: "
+            INPUT guess
+        END WHILE
+
+        # Decision branching
+        IF guess < secret_number THEN
+            PRINT "Your guess is too low."
+        ELSE IF guess > secret_number THEN
+            PRINT "Your guess is too high."
+        ELSE
+            PRINT "You got it!"
+        END IF
+    END WHILE
 
     # Play the game.
     TODO: Obtain and validate a guess using the selected bounds.
